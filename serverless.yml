@@ -28,10 +28,19 @@ provider:
 plugins:
   - serverless-finch
   - serverless-single-page-app-plugin
+  - serverless-cloudfront-invalidate
+
 custom:
   client:
     bucketName: frontendus-2
     distributionFolder: ./dist/app
+
+  cloudfrontInvalidate:
+    distributionId: "EYWY9SKNW1ZSC"
+    autoInvalidate: true
+    items: # one or more paths required
+      - "/index.html"
+
 
   s3LocalPath: ${self:custom.client.distributionFolder}/
   s3BucketName: ${self:custom.client.bucketName}
